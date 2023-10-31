@@ -21,5 +21,7 @@ public class ApplicationInfoService {
         applicationInfo.setAdminEmail(newApplicationInfo.getAdminEmail());
         applicationInfo.setTitle(newApplicationInfo.getTitle());
         applicationInfo.setVersion(newApplicationInfo.getVersion());
+
+        //throw new IllegalArgumentException("Issue");
     }
 }

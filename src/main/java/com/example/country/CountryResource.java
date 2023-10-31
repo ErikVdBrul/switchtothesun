@@ -25,8 +25,9 @@ public class CountryResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Country> getAllCountries(@RestQuery Optional<String> continent) {
-        return countryService.getAllCountries();
+    public List<CountryDTO> getAllCountries(@RestQuery Optional<String> continent) {
+        return continent.map(countryService::getAllCountriesByContinent)
+                .orElseGet(countryService::getAllCountries);
     }
 
     @POST

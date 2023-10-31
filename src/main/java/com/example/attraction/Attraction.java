@@ -1,7 +1,11 @@
 package com.example.attraction;
 
+import com.example.attraction.attractionoverview.AttractionOverview;
 import com.example.country.Country;
+import com.example.tourist.Tourist;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "ATTRACTION")
@@ -20,6 +24,16 @@ public class Attraction {
     @ManyToOne
     @JoinColumn(name = "FK_COUNTRY_ID")
     private Country country;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "FK_ATTRACTION_OVERVIEW")
+    private AttractionOverview attractionOverview;
+    @ManyToMany
+    @JoinTable(name = "TOURIST_ATTRACTION",
+            joinColumns = @JoinColumn(name = "ATTRACTION_ID"),
+            inverseJoinColumns = @JoinColumn(name = "TOURIST_ID"))
+    private List<Tourist> touristList;
+
 
     public Attraction(String name, Country country) {
         this.name = name;
@@ -43,6 +57,13 @@ public class Attraction {
 
     public Country getCountry() {
         return country;
+    }
+    public AttractionOverview getAttractionOverview() {
+        return attractionOverview;
+    }
+
+    public List<Tourist> getTouristList() {
+        return touristList;
     }
 
     @Override

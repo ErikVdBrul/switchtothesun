@@ -1,5 +1,7 @@
 package com.example.attraction;
 
+import com.example.attraction.attractionoverview.AttractionOverview;
+import com.example.attraction.attractionoverview.AttractionOverviewDTO;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 
@@ -42,5 +44,8 @@ public class AttractionService {
                 attraction.getName(),
                 attraction.getType(),
                 attraction.getCountry());
+    }
+    private AttractionOverviewDTO toDTO(AttractionOverview attractionOverview) {
+        return new AttractionOverviewDTO(attractionOverview.getId(), attractionOverview.getScore(), attractionOverview.getDescription(), attractionOverview.getPrice(), attractionOverview.getVisitorsPerYear());
     }
 }

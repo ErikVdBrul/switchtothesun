@@ -1,5 +1,7 @@
 package com.example.attraction;
 
+import com.example.attraction.attractionoverview.AttractionOverview;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -27,4 +29,5 @@ public class AttractionResource {
                 .or(() -> country.map(attractionService::findAttractionsInCountry))
                 .orElseGet(attractionService::getAllAttractions);
     }
+
 }

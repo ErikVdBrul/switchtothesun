@@ -28,4 +28,9 @@ public class AttractionRepository {
                 .setParameter("country", country)
                 .getResultList();
     }
+    public Attraction findAttractionByName(String attractionName) {
+        return entityManager.createQuery("select a from Attraction a where a.name = :name", Attraction.class)
+                .setParameter("name", attractionName)
+                .getSingleResult();
+    }
 }
